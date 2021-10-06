@@ -8,7 +8,7 @@ const routes = [
 	{
 		path: '/',
 		name: 'home',
-        redirect: {name: 'expenditure-index'},
+        redirect: {name: 'crosword-index'},
 		component: () => import('./../components/layouts/Home.vue'),
 		children: [
 			{
@@ -30,13 +30,21 @@ const routes = [
 		],
 	},
     {
-        path: 'admin',
-        component: () => import('./../views/admin'),
+        path: '/admin',
+        component: () => import('./../components/layouts/Admin.vue'),
+        redirect: {name: 'dashboard-index'},
         children: [
             {
                 path: '',
                 name: 'dashboard',
-                component: () => import('./../views/admin/pages')
+                component: () => import('./../views/admin'),
+                children: [
+                    {
+                        path: '',
+                        name: 'dashboard-index',
+                        component: () => import('./../views/admin/dashboard'),
+                    }
+                ]
             }
         ]
     }

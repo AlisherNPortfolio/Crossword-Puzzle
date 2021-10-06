@@ -1,22 +1,31 @@
 <template>
-    <v-app>
-        <v-main>
-            <nav class="navbar navbar-expand-lg navbar-light bg-light">
-                <div class="collapse navbar-collapse">
-                    <admin-menu/>
-                </div>
-            </nav>
-            <router-view></router-view>
-        </v-main>
-        <notification />
-    </v-app>
+    <v-app id="inspire">
+    <admin-menu :is-open="drawer" />
+
+    <admin-app-bar @clickHamburger="drawer = $event" />
+    <v-main>
+        <router-view />
+    </v-main>
+
+    <admin-footer />
+  </v-app>
 </template>
 <script>
 import Notification from './../shared-components/Notification';
 import AdminMenu from './AdminMenu';
+import AdminAppBar from './../layouts/AdminAppBar.vue';
+import AdminFooter from './../layouts/AdminFooter';
 
 export default {
     name: 'Home',
-    components: {Notification, AdminMenu}
+    components: {Notification, AdminMenu, AdminAppBar, AdminFooter},
+    data() {
+        return {
+            drawer: true
+        }
+    },
+    created () {
+        // this.$vuetify.theme.dark = true;
+    }
 }
 </script>
