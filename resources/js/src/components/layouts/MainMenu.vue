@@ -15,10 +15,7 @@ export default {
     data() {
         return {
             menuItems: [
-                { name: 'Home', link: '/' },
-                { name: 'Expenditures', link: '/expenditures' },
-                { name: 'Measures', link: '/measures' },
-                { name: 'Products', link: '/products' }
+                { name: 'Home', link: '/' }
             ]
         }
     }
