@@ -54,6 +54,11 @@ export default {
                     link: '/admin',
                     icon: 'mdi-view-dashboard'
                 },
+                {
+                    title: 'Crossword',
+                    link: '/admin/crossword',
+                    icon: 'mdi-newspaper'
+                },
                 // {
                 //     title: 'User Roles',
                 //     link: '/',
@@ -106,11 +111,7 @@ export default {
                 //     link: '/',
                 //     icon: 'mdi-file-chart'
                 // },
-                // {
-                //     title: 'Club News',
-                //     link: '/',
-                //     icon: 'mdi-newspaper'
-                // },
+
                 // {
                 //     title: 'Sponsors',
                 //     link: '/',
@@ -139,7 +140,7 @@ export default {
 <style lang="scss" scoped>
 div.v-list-item {
 
-    a.router-link-active {
+    a {
         align-items: center;
         display: flex;
         flex: 1 1 100%;

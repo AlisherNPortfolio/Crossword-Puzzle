@@ -45,6 +45,23 @@ const routes = [
                         component: () => import('./../views/admin/dashboard'),
                     }
                 ]
+            },
+            {
+                path: 'crossword',
+                name: 'admin-crossword',
+                component: () => import('./../views/admin/crossword'),
+                children: [
+                    {
+                        path: '',
+                        name: 'admin-crossword-index',
+                        component: () => import('./../views/admin/crossword/pages'),
+                    },
+                    {
+                        path: 'create',
+                        name: 'admin-crossword-create',
+                        component: () => import('./../views/admin/crossword/pages/add-edit'),
+                    }
+                ]
             }
         ]
     }
