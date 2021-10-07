@@ -8,4 +8,4 @@
 
 ### Online
 
-Demo on [heroku](https://herokuapp.com)
+Demo on [heroku](https://crossword-game-puzzle.herokuapp.com)
