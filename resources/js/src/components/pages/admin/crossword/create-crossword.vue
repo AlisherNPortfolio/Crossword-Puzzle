@@ -4,8 +4,8 @@
             <tbody>
                 <tr v-for="(row, idx) in rows" :key="idx">
                     <td v-for="(col, idy) in cols" :key="idy">
-                        <!-- <input type="text" maxlength="1"> -->
-                        <textarea cols="20" rows="1" class="question-input"></textarea>
+                        <input type="text" maxlength="1">
+                        <!-- <textarea cols="20" rows="1" class="question-input"></textarea> -->
                     </td>
                 </tr>
             </tbody>
