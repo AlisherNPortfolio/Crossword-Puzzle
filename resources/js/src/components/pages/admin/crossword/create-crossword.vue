@@ -28,6 +28,7 @@
     </div>
 </template>
 <script>
+// birinchi va oxirgi kataklarni tanlab shu kataklar orasiga so'z qo'yish
 export default {
     name: 'create-crossword',
     props: {
