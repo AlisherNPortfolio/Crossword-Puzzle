@@ -15,10 +15,10 @@ export default {
     name: 'add-edit',
     data() {
         return {
-            creating: false,
+            creating: true,
             crosswordCells: {
-                rows: null,
-                cols: null
+                rows: 10,
+                cols: 10
             }
         }
     },

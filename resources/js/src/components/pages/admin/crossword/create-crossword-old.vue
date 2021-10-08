@@ -17,8 +17,7 @@
                         :data-coords="`${row},${col}`"
                         :data-selected="false"
                         :id="`crossword__row-${col}`"
-                        class="crossword__col"
-                        disabled>
+                        class="crossword__col">
                         <!-- <input type="text" maxlength="1"> -->
                         <!-- <textarea cols="20" rows="1" class="question-input"></textarea> -->
                     </td>
@@ -81,6 +80,11 @@ export default {
                     this.selectedCells.push(selectedCell);
                 }
 
+                if (this.checkSequence(selectedCell)) {
+                    this.selectedCells.pop();
+                    this.onProcess = false;
+                }
+
                 this.setCellColor(selectedCell);
 
                 console.log('process', e)
@@ -102,15 +106,89 @@ export default {
                 })
             }
         },
+        checkSequence(currentCell) {
+            if (this.onProcess && this.selectedCells.length >= 2) {
+                const currentCoords = currentCell.dataset.coords.split(',');
+                // const currentCellIndex = this.selectedCells.findIndex(cell => cell === currentCell);
+                let beforeCell = this.selectedCells[this.selectedCells.length - 2];
+
+                // if (currentCellIndex > 0) {
+                //      beforeCell = this.selectedCells[currentCellIndex - 1];
+                // }
+
+                const beforeCoords = beforeCell.dataset.coords.split(',');
+
+                return currentCoords[0] - beforeCoords[0] === 0 &&
+                       currentCoords[1] - beforeCoords[1] === 0;
+            }
+        },
+        getDirection() {
+            if (this.onProcess && this.selectedCells.length >= 2) {
+                const firstCell = this.selectedCells[0];
+                const secondCell = this.selectedCells[1];
+                const coords1 = firstCell.dataset.coords.split(',');
+                const coords2 = secondCell.dataset.coords.split(',');
+                const subRow = coords1[0] - coords2[0],
+                        subCol = coords1[1] - coords2[1];
+
+                let direction = null;
+
+                if (subRow < 0 && subCol === 0) {
+                    direction = 'down';
+                }
+
+                if (subRow > 0 && subCol === 0) {
+                    direction = 'up';
+                }
+
+                if (subRow === 0 && subCol < 0) {
+                    direction = 'right';
+                }
+
+                if (subRow === 0 && subCol > 0) {
+                    direction = 'left';
+                }
+
+                return direction;
+            }
+        },
         setCellColor(cell) {
             cell.style.backgroundColor = '#8f9552';
             cell.dataset.selected = true;
-        }
+        },
+        // checkSequence() {
+        //     if (this.onProcess && this.selectedCells.length >= 2) {
+        //         const firstCell = this.selectedCells[0];
+        //         const secondCell = this.selectedCells[1];
+        //         const coords1 = firstCell.dataset.coords.split(',');
+        //         const coords2 = secondCell.dataset.coords.split(',');
+        //         const subRow = coords1[0] - coords2[0],
+        //               subCol = coords1[1] - coords2[1];
+
+        //         let direction = null;
+
+        //         if (subRow < 0 && subCol === 0) {
+        //             direction = 'down';
+        //         }
+
+        //         if (subRow > 0 && subCol === 0) {
+        //             direction = 'up';
+        //         }
+
+        //         if (subRow === 0 && subCol < 0) {
+        //             direction = 'right';
+        //         }
+
+        //         if (subRow === 0 && subCol > 0) {
+        //             direction = 'left';
+        //         }
+
+
+
+        //         this.coordX = coords1[0];
+        //         this.coordY = coords1[1];
+        //     }
+        // },
     }
 }
 </script>
-<style scoped>
-/* .disabled {
-    pointer-events:none;
-} */
-</style>
